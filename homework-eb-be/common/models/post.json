@@ -1,0 +1,39 @@
+{
+  "name": "Post",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": true
+    },
+    "picture": {
+      "type": "string",
+      "required": true
+    },
+    "comment": {
+      "type": "string"
+    },
+    "create_date": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "tags": {
+      "type": "hasMany",
+      "model": "Tag",
+      "foreignKey": "id"
+    },
+    "customUser": {
+      "type": "belongsTo",
+      "model": "CustomUser",
+      "foreignKey": "id"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

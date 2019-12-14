@@ -1,0 +1,15 @@
+{
+  "json-ds": {
+    "name": "json-ds",
+    "localStorage": "",
+    "file": "db.json",
+    "connector": "memory"
+  },
+  "picturesDS": {
+    "name": "picturesDS",
+    "provider": "filesystem",
+    "root": "server/storage",
+    "maxFileSize": "10485760",
+    "connector": "loopback-component-storage"
+  }
+}

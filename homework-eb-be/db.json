@@ -1,0 +1,27 @@
+{
+  "ids": {
+    "AccessToken": 2,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1,
+    "Post": 1,
+    "CustomUser": 2,
+    "Tag": 3
+  },
+  "models": {
+    "AccessToken": {
+      "ZaNAzZ8w3tjFRqbaBo8wtoUghkKVlxWj991pgdD8RG3DsFnjHiz8QbFO0UMH0otu": "{\"id\":\"ZaNAzZ8w3tjFRqbaBo8wtoUghkKVlxWj991pgdD8RG3DsFnjHiz8QbFO0UMH0otu\",\"ttl\":1209600,\"created\":\"2019-12-13T23:56:10.707Z\",\"userId\":1}"
+    },
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {},
+    "Post": {},
+    "CustomUser": {
+      "1": "{\"realm\":\"string\",\"username\":\"admin\",\"password\":\"$2a$10$g1yD8qqD/LpBtBCl6CgjEuDajttPyiUgFqMisIKCQoXE1Yshad0h6\",\"email\":\"admin@admin\",\"emailVerified\":false,\"id\":1}"
+    },
+    "Tag": {
+      "1": "{\"id\":1,\"name\":\"wood\"}",
+      "2": "{\"id\":2,\"name\":\"heart\"}"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "CustomUser",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "followers": {
+      "type": "hasMany",
+      "model": "CustomUser",
+      "foreignKey": "id"
+    },
+    "posts": {
+      "type": "hasMany",
+      "model": "Post",
+      "foreignKey": "id"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
