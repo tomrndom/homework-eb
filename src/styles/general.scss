@@ -1,0 +1,101 @@
+body {
+  background-color: #fafafa;
+}
+
+.app-container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin: 0 15%;
+  max-width: 935px;
+  padding-top: 60px;
+}
+
+.app-menu {
+  background-color: #ffffff !important;
+}
+
+.picture-post {
+  margin-bottom: 60px;
+  background-color: #ffffff;
+  border: 1px solid #e6e6e6;
+
+  header {
+    height: 60px;
+    padding: 16px;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  .comments {
+    padding: 10px 10px 0px 10px;
+
+    .comment {
+      display: flex;
+      align-items: baseline;
+      font-size: 14px;
+
+      h2 {
+        font-size: 16px;
+        margin-bottom: 0.5rem;
+      }
+
+      span {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  hr {
+    width: 98%;
+    color: #e6e6e6;
+    opacity: 0.3;
+  }
+
+  .new-comment {
+    padding: 0px 10px 10px 10px;
+    form {
+      display: flex;
+    }    
+    textarea {
+      border: 0;
+      outline: 0;
+      padding: 0;
+      resize: none;
+      height: 60px;
+      width: 100%;
+    }
+    button {
+      border: 0;
+      color: #3897f0;
+      display: inline;
+      padding: 0;
+      background-color: transparent;
+      margin-left: auto;
+      cursor: pointer;
+    }
+  }
+}
+
+.form-upload {
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  border: 1px solid #e6e6e6;
+  padding: 20px;
+  max-width: 968px;
+  label {
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  button {
+    margin: 15px 0;
+    width: 20%;
+  }
+  .picture-preview {
+    display: flex;
+    justify-content: center;    
+    max-width: 50%;
+    max-height: auto;
+  }
+}
