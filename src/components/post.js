@@ -1,34 +1,76 @@
 import React from 'react'
+import { lorem, internet } from 'Faker';
 
 class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
         };
+
+        this.handleRandomInteraction = this.handleRandomInteraction.bind(this);
+        this.handleFollowUser = this.handleFollowUser.bind(this);
+    }
+
+    getRandomInteractions() {
+      let interactions = [];
+      for (let index = 0; index < Math.floor(Math.random() * 10) + 1 ; index++) {                        
+        interactions.push(this.handleRandomInteraction());
+      }
+      return interactions;
+    }
+
+    handleRandomInteraction() {      
+      let user = internet.userName();
+      let comment = lorem.sentence();
+
+      return {user, comment};
+    }
+
+    handleFollowUser(author) {
+      this.props.follow(author);
     }
 
 
     render() {
 
+      let {post:{description, tags, location, picture, download_url, author}, following} = this.props;
+
+      console.log(picture);
+
         return (
             <article className="picture-post">                
               <header className="post-owner">
-                Pepito
+                {author}
+                {following.find(f => f.user === author) ? <span>Following</span> : <button onClick={() => this.handleFollowUser(author)}>Follow</button>}                
               </header>
               <div className="picture">
-                <img src="https://cdn.pixabay.com/photo/2015/03/30/20/33/heart-700141_960_720.jpg" />
+                {download_url ? 
+                <img src={download_url} alt={description}/>
+                :                
+                <img src={picture}/>
+                }                
               </div>
               <div>
                 <div className="comments">
                   <div className="comment">
-                    <h2>Pepito</h2> <span>First test post #noregreats</span>
+                      <h2>{author}</h2> 
+                      <span>{`
+                        ${description ? description : ''}
+                        ${tags ? tags.map(t => { console.log(t); return (<b>{`#${t} `}</b>) }) : ''}
+                        ${location && location.city? location.country ? `@${location.city}, ${location.country}` : `@${location.city}` : ''}`}
+                      </span>
                   </div>
                   <div className="comment">
-                    <h2>Hector</h2> <span>Bruh</span>
-                  </div>
-                  <div className="comment">
-                    <h2>Mamá</h2> <span>When are you gonna call me?</span>
-                  </div>
+                    {
+                      // this.getRandomInteractions().map(i => {
+                      //   return (
+                      //     <React.Fragment>
+                      //       <h2>{i.user}</h2> <span>{i.comment}</span>
+                      //     </React.Fragment>
+                      //   )
+                      // })
+                    }                                        
+                  </div>                  
                 </div>
                 <hr />
                 <section className="new-comment">

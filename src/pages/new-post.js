@@ -19,7 +19,7 @@ class NewPostPage extends React.Component {
 
     return (
       <div className="newPostContainer">
-           <NewPostForm createPost={createPost}/>
+           <NewPostForm createPost={this.props.createPost}/>
       </div>
     )
   }

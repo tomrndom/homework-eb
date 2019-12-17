@@ -18,9 +18,9 @@ export default class MenuExampleSecondaryPointing extends Component {
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
           />
-          <Menu.Item as={Link} to='/profile' 
-            name='profile'
-            active={activeItem === 'profile'}
+          <Menu.Item as={Link} to='/explore' 
+            name='explore'
+            active={activeItem === 'explore'}
             onClick={this.handleItemClick}
           />
           <Menu.Item as={Link} to='/new-post' 
@@ -28,13 +28,6 @@ export default class MenuExampleSecondaryPointing extends Component {
             active={activeItem === 'newPost'}
             onClick={this.handleItemClick}
           />
-          <Menu.Menu position='right'>
-            <Menu.Item
-              name='logout'
-              active={activeItem === 'logout'}
-              onClick={this.handleItemClick}
-            />
-          </Menu.Menu>
         </Menu>
       </div>
     )

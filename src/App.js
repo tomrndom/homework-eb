@@ -3,7 +3,7 @@ import { Switch, Route, Router, Redirect } from 'react-router-dom'
 
 import HomePage from './pages/home'
 import NewPostPage from './pages/new-post'
-import ProfilePage from './pages/profile'
+import ExplorePage from './pages/explore'
 
 import AppMenu from './components/menu'
 
@@ -20,7 +20,7 @@ function App() {
         <div className="app-container">
             <Switch>
                 <Route path="/new-post" component={NewPostPage}/>
-                <Route path="/profile" component={ProfilePage}/>                
+                <Route path="/explore" component={ExplorePage}/>                
                 <Route path="/" component={HomePage}/>
                 <Route render={props => (<Redirect to={`/`} />)}/>
             </Switch>

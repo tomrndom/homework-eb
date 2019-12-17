@@ -4,9 +4,10 @@ class NewPostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      author: 'Yourself',
       file: '',
       imagePreview: '',
-      pictureInfo: '',
+      description: '',
       tag: '',
     };
     this.handleImageChange = this.handleImageChange.bind(this);
@@ -16,8 +17,9 @@ class NewPostForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let {file, pictureInfo, tag} = this.state;
-    this.props.createPost(file, pictureInfo, tag);
+    let {imagePreview, description, tag, author} = this.state;
+    let tags = tag.split(' ');
+    this.props.createPost(imagePreview, description, tags, author);
   }
 
   handleImageChange(e) {
@@ -42,7 +44,7 @@ class NewPostForm extends React.Component {
   }
 
   render() {
-    let { imagePreview, pictureInfo, tag } = this.state;
+    let { imagePreview, description, tag } = this.state;
     let $imagePreview = null;
     if (imagePreview) {
       $imagePreview = (<img src={imagePreview} />);
@@ -53,7 +55,7 @@ class NewPostForm extends React.Component {
         <form className="form-upload" onSubmit={this.handleSubmit}>
           <h2>Add new Post</h2>
           <label>Image</label><input type="file" onChange={this.handleImageChange} />
-          <label>Description</label><input type="text" id="pictureInfo" value={this.state.pictureInfo} onChange={this.handleChange}></input>
+          <label>Description</label><input type="text" id="description" value={this.state.description} onChange={this.handleChange}></input>
           <label>Tags</label><input type="text" id="tag" value={this.state.tag} onChange={this.handleChange}></input>
           <button type="submit" onClick={this.handleSubmit}>Upload Image</button>
           <div className="picture-preview">

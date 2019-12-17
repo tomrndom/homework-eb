@@ -23,8 +23,10 @@ body {
   header {
     height: 60px;
     padding: 16px;
-    align-items: center;
     font-weight: bold;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
   }
 
   .comments {
@@ -43,6 +45,12 @@ body {
       span {
         margin-left: 5px;
       }
+    }
+  }
+
+  .picture {
+    img {
+      max-width: 100%;
     }
   }
 

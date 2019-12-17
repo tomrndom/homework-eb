@@ -6,17 +6,28 @@ export const CREATE_POSTS_ERROR = 'CREATE_POSTS_ERROR';
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
 export const GET_POSTS_ERROR = 'GET_POSTS_ERROR';
+export const GET_MORE_POSTS = 'GET_MORE_POSTS';
+export const GET_MORE_POSTS_SUCCESS = 'GET_MORE_POSTS_SUCCESS';
+export const GET_MORE_POSTS_ERROR = 'GET_MORE_POSTS_ERROR';
+export const GET_FOLLOWING_POSTS = 'GET_FOLLOWING_POSTS';
+export const GET_FOLLOWING_POSTS_SUCCESS = 'GET_FOLLOWING_POSTS_SUCCESS';
+export const GET_FOLLOWING_POSTS_ERROR = 'GET_FOLLOWING_POSTS_ERROR';
 
 const API_URL = process.env.REACT_APP_BASE_API_URL;
 const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
 
-export const createPost = (picture, description, tags) => {
+export const createPost = (picture, description, tags, author) => (dispatch, getState) => {
+  
+  let payload = { picture, description, tags, author };  
 
-  // var bodyFormData = new FormData();
-  // bodyFormData.append('image', picture);  
+  dispatch({
+    type: CREATE_POSTS
+  });
 
-  // let urlUpload = `Pictures/pictures/upload`;
-  // let urlPost   = `Posts/`;
+  dispatch({
+    type: CREATE_POSTS_SUCCESS,
+    payload
+  })
 
   // return axios.post(urlUpload, bodyFormData).then(pic => {
   //   console.log(pic);
@@ -27,27 +38,75 @@ export const createPost = (picture, description, tags) => {
   
 };
 
-export const getPosts = () => (dispatch, getSTate) => {
+export const getPosts = () => (dispatch, getState) => {
+
+  let { postState: { current_page, per_page } } = getState();
 
   dispatch({
-    type: CREATE_POSTS    
-  })
+    type: GET_POSTS    
+  });
 
-  return axios.get('https://api.unsplash.com/photos/random?count=30', {
-    headers: {
-    Authorization: UNSPLASH_KEY
-    }
-  }).then(pictures => {
-    console.log(pictures)
+  const request = axios.get(`https://picsum.photos/v2/list?page=${current_page}?limit=${per_page}`);
+
+  return request.then(pictures => {    
     dispatch({
-      type: CREATE_POSTS_SUCCESS,
+      type: GET_POSTS_SUCCESS,
       payload: pictures
     });
   }).catch(error => {
     console.log(error);
     dispatch({
-      type: CREATE_POSTS_ERROR      
+      type: GET_POSTS_ERROR      
     });
   })
-  
-};
+}
+
+export const getFollowersPosts = () => (dispatch, getState) => {
+  let { postState: { current_page }, userState: {following} } = getState();
+
+  dispatch({
+    type: GET_FOLLOWING_POSTS
+  });
+
+  const request = axios.get(`https://picsum.photos/v2/list?page=${current_page}?limit=100`);
+
+  return request.then(pictures => {
+    let followedPosts = [];
+    
+    pictures.data.map(pic => {
+      let post = following.find(f => f.user === pic.author);
+      if(post) followedPosts.push(pic);      
+    })
+    dispatch({
+      type: GET_FOLLOWING_POSTS_SUCCESS,
+      payload: followedPosts
+    });
+  }).catch(error => {
+    console.log(error);
+    dispatch({
+      type: GET_FOLLOWING_POSTS_ERROR      
+    });
+  })
+}
+
+export const getMorePosts = () => (dispatch, getState) => {
+  let { postState: { current_page, per_page } } = getState();
+
+  dispatch({
+    type: GET_MORE_POSTS    
+  });
+
+  const request = axios.get(`https://picsum.photos/v2/list?page=${current_page+1}?limit=${per_page}`);
+
+  return request.then(pictures => {    
+    dispatch({
+      type: GET_MORE_POSTS_SUCCESS,
+      payload: pictures
+    });
+  }).catch(error => {
+    console.log(error);
+    dispatch({
+      type: GET_MORE_POSTS_ERROR      
+    });
+  })
+}
